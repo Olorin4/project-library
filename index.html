@@ -7,8 +7,35 @@
     <link rel="stylesheet" href="styles.css">
     <script src="javascript.js" defer></script>
 </head>
-<body>
-    <p>My Library</p>
-    
-</body>
+    <body>
+        <!-- <h5>My Library</h5> -->
+        <!-- <div class="form-container"> -->
+            <form>
+                <fieldset class="user-input">
+                    <legend>Add a book to your library!</legend>
+
+                    <div class="book-info">
+                        <div class="book-title">
+                            <label for="book-title">BOOK TITLE: </label>
+                            <input id="book-title" type="text" name="book-title" required />
+                        </div>
+                        <div class="page-count">
+                            <label for="page-count">PAGES: </label>
+                            <input id="page-count" type="number" name="page-count" required />
+                        </div>
+                        <div class="author-name">
+                            <label for="author-name">AUTHOR: </label>
+                            <input id="author-name" type="text" name="author-name" required />
+                        </div>
+                        <div class="read-status">
+                            <label for="read-status">Have you read it yet?</label>
+                            <input id="read-status" type="radio" name="read-status" required /> YES
+                            <input id="read-status" type="radio" name="read-status" required /> NO
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        <!-- </div> -->
+
+    </body>
 </html>

@@ -12,3 +12,43 @@ a {
     text-decoration: none;
     color: rgb(0, 0, 0);
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+fieldset {
+    height: 27vh;
+    width: 75vw;
+}
+
+legend {
+    text-align: center;
+}
+
+label {
+    font-size: 0.7em;
+}
+
+.book-info {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+}
+
+.book-title {
+    grid-column: 1;
+}
+
+.author-name {
+    grid-column: 1;
+}
+
+.book-info div {
+    display: grid;
+} 
