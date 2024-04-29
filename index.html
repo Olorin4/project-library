@@ -32,11 +32,11 @@
                             <ul>
                                 <li>
                                     <label for="read-status">YES</label>
-                                    <input id="read-status" type="radio" name="read-status" required />
+                                    <input id="read-status" type="radio" name="read-status" value="read" required />
                                 </li>
                                 <li>
                                     <label for="read-status">NO</label>
-                                    <input id="read-status" type="radio" name="read-status" required />
+                                    <input id="read-status" type="radio" name="read-status" value="not read" required />
                                 </li>
                             </ul>
                         </div>
@@ -44,6 +44,20 @@
                     </div>
                 </fieldset>
             </form>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Pages</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="book-table-body">
+                    <!-- Table rows will be added dynamically here -->
+                </tbody>
+            </table>
 
     </body>
 </html>
