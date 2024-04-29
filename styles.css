@@ -24,8 +24,12 @@ body {
     align-items: center;
 }
 
+form {
+    margin: 25px;
+}
+
 fieldset {
-    height: 30vh;
+    height: 37vh;
     width: 75vw;
 }
 
@@ -34,14 +38,19 @@ legend {
 }
 
 label {
-    font-size: 0.7em;
+    font-size: 0.75em;
+}
+
+input {
+    border: 1px solid rgb(165, 164, 164);
+    border-radius: 5px;
 }
 
 .book-info {
     padding: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 30px 30px;
+    grid-template-rows: 35px 35px;
     gap: 20px;
 }
 
@@ -57,4 +66,19 @@ label {
     display: flex;
     flex-direction: column;
 } 
+div#read-status {
+    font-size: 1.1em;
+    display: grid;
+    grid-template-columns: 125px 25px;
+    gap: 10px;
+}
 
+button {
+    width: 100px;
+    height: 25px;
+    background-color: rgb(104, 104, 241);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
