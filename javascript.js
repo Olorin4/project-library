@@ -1,5 +1,6 @@
 const myLibrary = [];
 
+
 // OBJECT CONSTRUCTOR
 function Book(title, author, pages, status) {
     this.title = title;
@@ -7,6 +8,12 @@ function Book(title, author, pages, status) {
     this.pages = pages;
     this.status = status;
 }
+
+
+// Add a method to the Book prototype to toggle the read status
+Book.prototype.toggleStatus = function() {
+    this.status = this.status === 'read' ? 'not read' : 'read';
+};
 
 
 function addBookToLibrary(title, author, pages, status) {
@@ -59,27 +66,48 @@ function updateTable() {
         pagesCell.textContent = book.pages;
         statusCell.textContent = book.status;
 
-        // Create a delete button to remove row
-        const removeCell = document.createElement('td');
-        const deleteIcon = document.createElement('img');
-        deleteIcon.src = 'img/delete.svg';
-        deleteIcon.alt = 'delete';
-        // Set a data attribute to associate the button with the index of the book in the library array
-        deleteIcon.dataset.index = index;
-        deleteIcon.addEventListener('click', removeBook);
-
         row.appendChild(titleCell);
         row.appendChild(authorCell);
         row.appendChild(pagesCell);
         row.appendChild(statusCell);
-        row.appendChild(removeCell);
+        
+
+        // Create a new cell for a toggle status button
+        const toggleCell = document.createElement('td');
+        const toggleIcon = document.createElement('img');
+        toggleIcon.src = 'img/read.svg';
+        toggleIcon.alt = 'delete';
+        // Set a data attribute to associate the icon with the index of the book in the library array
+        toggleIcon.dataset.index = index;
+        toggleIcon.addEventListener('click', toggleStatus);
+        toggleCell.appendChild(toggleIcon);
+        row.appendChild(toggleCell);
+
+        // Create a new cell for a delete icon that removes row
+        const removeCell = document.createElement('td');
+        const deleteIcon = document.createElement('img');
+        deleteIcon.src = 'img/delete.svg';
+        deleteIcon.alt = 'delete';
+        // Set a data attribute to associate the icon with the index of the book in the library array
+        deleteIcon.dataset.index = index;
+        deleteIcon.addEventListener('click', removeBook);
         removeCell.appendChild(deleteIcon);
+        row.appendChild(removeCell);
     });
 }
+
+
+// Toggle the read status of a book
+function toggleStatus(event) {
+    const index = event.target.dataset.index; // Get the index of the book from the button's data attribute
+    myLibrary[index].toggleStatus(); // Toggle the read status of the book
+    updateTable(); 
+}
+
 
 // Remove a book from the library
 function removeBook(event) {
     const index = event.target.dataset.index; // Get the index of the book from the data attribute
     myLibrary.splice(index, 1); // Remove the book from the library array
-    updateTable(); // Update the table to reflect the changes
+    updateTable();
 }
