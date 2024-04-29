@@ -124,7 +124,8 @@ thead th:nth-child(5) {
 }
 
 img {
-    width: 20px;
+    width: 25px;
+    padding:5px;
 }
 
 tr:nth-child(even) {

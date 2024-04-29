@@ -12,7 +12,7 @@ function Book(title, author, pages, status) {
 
 // Add a method to the Book prototype to toggle the read status
 Book.prototype.toggleStatus = function() {
-    this.status = this.status === 'read' ? 'not read' : 'read';
+    this.status = (this.status === 'read') ? 'not read' : 'read';
 };
 
 
@@ -71,38 +71,41 @@ function updateTable() {
         row.appendChild(pagesCell);
         row.appendChild(statusCell);
         
-
-        // Create a new cell for a toggle read-status button and a delete icon that removes row
+        // Create a new cell for a toggle read-status icon and a delete icon
         const actionCell = document.createElement('td');
+        row.appendChild(actionCell);
+
         const toggleIcon = document.createElement('img');
-        const deleteIcon = document.createElement('img');
         toggleIcon.src = 'img/read.svg';
         toggleIcon.alt = 'toggle read status';
+        toggleIcon.title = "Toggle read/not read status"
+        toggleIcon.dataset.index = index;
+        toggleIcon.addEventListener('click', toggleStatus);
+
+        const deleteIcon = document.createElement('img');
         deleteIcon.src = 'img/delete.svg';
         deleteIcon.alt = 'delete';
-        // Set a data attribute to associate the icons with the index of the book in the library array
-        toggleIcon.dataset.index = index;
+        deleteIcon.title="Delete Book"
         deleteIcon.dataset.index = index;
-        toggleIcon.addEventListener('click', toggleStatus);
         deleteIcon.addEventListener('click', removeBook);
+
         actionCell.appendChild(toggleIcon);
         actionCell.appendChild(deleteIcon);
-        row.appendChild(actionCell);
     });
 }
 
 
 // Toggle the read status of a book
 function toggleStatus(event) {
-    const index = event.target.dataset.index; // Get the index of the book from the button's data attribute
-    myLibrary[index].toggleStatus(); // Toggle the read status of the book
+    const index = event.target.dataset.index;    // Get the index of the book from the button's data attribute
+    myLibrary[index].toggleStatus();             // Toggle the read status of the book
     updateTable(); 
 }
 
 
 // Remove a book from the library
 function removeBook(event) {
-    const index = event.target.dataset.index; // Get the index of the book from the data attribute
-    myLibrary.splice(index, 1); // Remove the book from the library array
+    const index = event.target.dataset.index;    // Get the index of the book from the data attribute
+    myLibrary.splice(index, 1);                  // Remove the book from the library array
     updateTable();
 }
