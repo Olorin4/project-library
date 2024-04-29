@@ -6,53 +6,13 @@ function Book(title, author, pages, status) {
     this.author = author;
     this.pages = pages;
     this.status = status;
-    this.info = function () {
-        console.log(this === book);
-        return `Title: ${this.title} by ${this.author}\nPages: ${this.pages}\nStatus: ${this.status}`;
-    };
 }
 
 
 function addBookToLibrary(title, author, pages, status) {
     const newBook = new Book(title, author, pages, status)
     myLibrary.push(newBook);
-
-    // Update the table with the new book data
     updateTable();
-}
-
-// Function to update the table with book data
-function updateTable() {
-    const tableBody = document.getElementById('book-table-body');
-    tableBody.innerHTML = ''; // Clear existing table rows
-
-    // Loop through each book in the library
-    myLibrary.forEach(book => {
-        // Create a new table row
-        const row = document.createElement('tr');
-
-        // Create table data cells for each book property
-        const titleCell = document.createElement('td');
-        titleCell.textContent = book.title;
-
-        const authorCell = document.createElement('td');
-        authorCell.textContent = book.author;
-
-        const pagesCell = document.createElement('td');
-        pagesCell.textContent = book.pages;
-
-        const statusCell = document.createElement('td');
-        statusCell.textContent = book.status;
-
-        // Append cells to the row
-        row.appendChild(titleCell);
-        row.appendChild(authorCell);
-        row.appendChild(pagesCell);
-        row.appendChild(statusCell);
-
-        // Append the row to the table body
-        tableBody.appendChild(row);
-    });
 }
 
 
@@ -74,3 +34,52 @@ bookForm.addEventListener('submit', function(event) {
     // Clear form inputs
     bookForm.reset();
 })
+
+
+// Function to update the table with book data
+function updateTable() {
+    const tableBody = document.querySelector('tbody');
+    tableBody.innerHTML = '';            // Clear existing table rows
+
+    // Loop through each book in the library
+    myLibrary.forEach((book, index) => {
+
+        // Create a new row and append it to the tbody
+        const row = document.createElement('tr');
+        tableBody.appendChild(row);   
+
+        // Create new cells and append them to the new row
+        const titleCell = document.createElement('td');
+        const authorCell = document.createElement('td');
+        const pagesCell = document.createElement('td');
+        const statusCell = document.createElement('td');
+
+        titleCell.textContent = book.title;
+        authorCell.textContent = book.author;
+        pagesCell.textContent = book.pages;
+        statusCell.textContent = book.status;
+
+        // Create a delete button to remove row
+        const removeCell = document.createElement('td');
+        const deleteIcon = document.createElement('img');
+        deleteIcon.src = 'img/delete.svg';
+        deleteIcon.alt = 'delete';
+        // Set a data attribute to associate the button with the index of the book in the library array
+        deleteIcon.dataset.index = index;
+        deleteIcon.addEventListener('click', removeBook);
+
+        row.appendChild(titleCell);
+        row.appendChild(authorCell);
+        row.appendChild(pagesCell);
+        row.appendChild(statusCell);
+        row.appendChild(removeCell);
+        removeCell.appendChild(deleteIcon);
+    });
+}
+
+// Remove a book from the library
+function removeBook(event) {
+    const index = event.target.dataset.index; // Get the index of the book from the data attribute
+    myLibrary.splice(index, 1); // Remove the book from the library array
+    updateTable(); // Update the table to reflect the changes
+}

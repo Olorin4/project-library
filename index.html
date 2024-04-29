@@ -27,16 +27,16 @@
                             <label for="author-name">AUTHOR: </label>
                             <input id="author-name" type="text" name="author-name" required />
                         </div>
-                        <div id="read-status">
-                            <label for="read-status">Have you read it yet?</label>
+                        <div class="read-status">
+                            <label>Have you read it yet?</label>
                             <ul>
                                 <li>
-                                    <label for="read-status">YES</label>
-                                    <input id="read-status" type="radio" name="read-status" value="read" required />
+                                    <label for="read">YES</label>
+                                    <input id="read" type="radio" name="read-status" value="read" required />
                                 </li>
                                 <li>
-                                    <label for="read-status">NO</label>
-                                    <input id="read-status" type="radio" name="read-status" value="not read" required />
+                                    <label for="not-read">NO</label>
+                                    <input id="not-read" type="radio" name="read-status" value="not read" required />
                                 </li>
                             </ul>
                         </div>
@@ -45,6 +45,8 @@
                 </fieldset>
             </form>
 
+            <h5>LIBRARY</h5>
+
             <table>
                 <thead>
                     <tr>
@@ -52,6 +54,7 @@
                         <th>Author</th>
                         <th>Pages</th>
                         <th>Status</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="book-table-body">
